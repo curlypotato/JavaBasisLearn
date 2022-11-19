@@ -96,4 +96,35 @@ java基础学习：基础篇（算法与数据结构）
           b.j指针负责从右向左找比基准点小的元素，i指针负责从左向右找比基准点大的元素，一旦找到二者交换，直至i,j相交；
           c.最后基准点与i比时，i与j交换，i即为分区位置。
 
- 
+
+## 3、集合（basis/list）
+### ArrayList
+   #### 扩容机制
+   * ArrayList()会使用长度为0的数组。
+   * ArrayList(int initalCapacity)会使用指定容量的数组。
+   * ArrayList(Collection<? extents E> c)会使用c的大小作为数组容量。
+   * add(Object o) 首次扩容为10，再扩容为上次容量的1.5倍；上次扩容量 >> 1（相当于除后取整）。
+   * addAll(Collection c)没有元素时，扩容为 Math.max(10,实际元素个数)，有元素为 Math.max(原容量1.5倍,实际元素个数)。
+   
+   #### 迭代器（Iterator)
+   * fail-fast：一旦发现遍历的同时，其他人来修改，则立刻抛异常（）
+   * fail-safe：发现遍历的同时，其他人来修改，应当能有应对策略，例如：牺牲一致性，来让整个遍历运行完成。
+      ##### 总结：
+         1）ArrayList是fail-fast的典型代表，遍历的同时不能修改，尽快失败。
+         2）CopyOnWriteArrayList是fail-safe的典型代表，遍历的同时可以修改，原理是读写分离。
+      ##### Vector实现是哪一种？
+
+### LinkedList
+#### ArrayList与LinkedList比较
+   #### ArrayList
+   * 基于数组，需要连续内存
+   * 随机访问快（指根据下标访问）
+   * 尾部插入、删除性能可以，其他部分插入、删除都会移动数据，因此性能会低
+   * 可以利用cpu缓存，局部性原理
+   #### LinkedList
+   * 基于双向链表，无需连续内存
+   * 随机访问慢（要沿着链表遍历）
+   * 头尾插入、删除性能高
+   * 占用内存多
+
+
